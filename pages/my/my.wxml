@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="user-info">
+    <block wx:if="{{userInfo.headimg && userInfo.headimg != ''}}">
+      <image src='{{userInfo.headimg}}'></image>
+    </block>
+    <block wx:elif="{{userInfo.headimg && userInfo.headimg == ''&&wx_userInfo.avatarUrl}}">
+      <image src='{{wx_userInfo.avatarUrl}}'></image>
+    </block>
+    <block wx:elif="{{!userInfo.headimg || userInfo.headimg == ''}}">
+      <image src="../../image/avatar_default_gray.png"></image>
+    </block>
+    <block wx:if="{{userInfo != null}}">
+      <view style='padding-top:8px;'>{{userInfo.nickname}}</view>
+      <view style='font-size:10pt;color:#555;font-weight:300;'>{{userInfo.mobile}}</view>
+    </block>
+    <block wx:if="{{userInfo == null}}">
+      <view style='padding-top:8px;'>未登录</view>
+      <view bindtap="gotoLogin" style='font-size:10pt;color:#555;font-weight:300;'>注册/登录</view>
+    </block>
+  </view>
+  <view style='height:8px'></view>
+  <view class="line"></view>
+  <view class="gray_view"></view>
+  <view class="line"></view>
+  <view class='my_item' bindtap="deposit">
+    <image class='item_icon' src='../../image/ZHIFU.png'></image>
+    <text class='item_title'>押金</text>
+    <text class='item_subTitle' style='color:{{isPayDeposit?"#009e96":"#999"}}'>{{isPayDeposit?'已交纳':'未交纳'}}</text>
+    <image class='item_arrow' src='../../image/arrow.png'></image>
+  </view>
+  <view class='my_item' bindtap="myOrder">
+    <image class='item_icon' style='width:14px' src='../../image/myorder.png'></image>
+    <text class='item_title'>我的订单</text>
+    <text class='item_subTitle'></text>
+    <image class='item_arrow' src='../../image/arrow.png'></image>
+  </view>
+  <view class='my_item last-item' bindtap="myAppeal">
+    <image class='item_icon'  src='../../image/SHENSU.png'></image>
+    <text class='item_title'>我的申诉</text>
+    <text class='item_subTitle'></text>
+    <image class='item_arrow' src='../../image/arrow.png'></image>
+  </view>
+  <view class='bottomView' bindtap="loginOut">{{userInfo?'退出':'登录'}}</view>
+</view>

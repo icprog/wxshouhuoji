@@ -1,0 +1,22 @@
+{
+  "pages":[
+    "pages/oppen-door/oppen-door",
+    "pages/passwordLogin/passwordLogin",
+    "pages/mobileLogin/mobileLogin",
+    "pages/mobileRegister/mobileRegister",
+    "pages/my/my",
+    "pages/have-opened/have-opened",
+    "pages/orderDetail/orderDetail",
+    "pages/orderList/orderList",
+    "pages/zhifu/zhifu",
+    "pages/agreement/agreement",
+    "pages/appealList/appealList",
+    "pages/afterSale/afterSale"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+     "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "路上会员柜"
+  }
+}

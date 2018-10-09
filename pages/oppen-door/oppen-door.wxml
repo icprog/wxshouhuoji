@@ -1,0 +1,93 @@
+
+<view class="container">
+  <image class="backgroundImage" src='{{backgroundImage}}' />
+  <view class='back_view' wx:if="{{!showLimit}}">
+    <image wx:if="{{isMember}}" src='../../image/member.png' class='icon_image'></image>
+    <!--  -->
+    <view class='followSwiper' wx:if="{{(isRequestSuccess&&!isPermission)}}">
+      <view class='welcomeName'>
+        {{userInfo && ("欢迎"+ ((userInfo.nickname&&userInfo.nickname!=null)?userInfo.nickname:userInfo.mobile))}}
+      </view>
+      <view class='welcomeDes'>以下任何一种方式都可购物</view>
+    </view>
+
+    <view class="text-view">
+      <view class='welcom_label'>{{userInfo?((isMember?'欢迎尊贵的路上会员"':'欢迎"')+ ((userInfo.nickname&&userInfo.nickname!=null)?userInfo.nickname:userInfo.mobile) +'"'):'欢迎来到"路上会员柜"'}}</view>
+      <view class='welcom_label2'>{{dateStr}}</view>
+    </view>
+    <view wx:if="{{(isRequestSuccess&&isPermission&&canClick)||(!qrCode&&canClick)||(!userInfo&&canClick)}}" style="opacity:0.8" class="buhuo" bindtap="opendoor" data-type="1">{{qrCode?(isPermission==1?'开门,先拿后付费':'开门'):'扫一扫'}}</view>
+    <view wx:elif="{{!canClick}}" style="opacity:0.8" class="buhuo" disabled data-type="1">{{qrCode?(isPermission==1?'开门,先拿后付费':'开门'):'扫一扫'}}</view>
+    <!-- <view wx:if="{{(isRequestSuccess&&isPermission==1)}}" class='chakan_buhuo' bindtap="memberOrDeposi" data-type='1'>开通免密,拿完即走</view> -->
+    <!-- <swiper wx:if="{{(isRequestSuccess&&!isPermission)}}" class='swiper' indicator-dots="true" duration='500' indicator-color="white" indicator-active-color="#009E96">
+      <block wx:for="{{items}}" wx:key="{{items}}">
+        <swiper-item>
+          <view style="width:100%;height:220px;">
+            <view style="top:0rpx;left: 0%;width: 100%;height: 220px;position: absolute; background-color:white;border-radius:5px;"></view>
+            <view style="left:5%;width:90%;height:85rpx;line-height:85rpx;text-align: center;color:black;font-size:36rpx;position:absolute;">{{item.title}}</view>
+            <view style="top:50px;left:5%;width:90%;height:90px;line-height:20px;text-align: center;color:black;font-size:12pt;position:absolute;">{{item.des}}</view>
+            <view wx:if="{{item.buttonTitle!=''}}" style="top:140px;left:5%;width:90%;text-align:center; height:40px;line-height:40px;color:black;background-color:#f5cb45;opacity:0.9;position:absolute;" bindtap="memberOrDeposi" data-type='{{item.type}}'>{{item.buttonTitle}}</view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper> -->
+
+    <!--==================================================  -->
+    <swiper wx:if="{{(isRequestSuccess&&!isPermission)}}" class='swiper' indicator-dots="true" duration='500' indicator-color="white" indicator-active-color="#f5cb45" circular="true">
+      <block wx:for="{{items}}" wx:key="{{items}}" wx:for-item="item">
+        <swiper-item>
+          <view>
+            <view class='item-title'>{{item.title}}</view>
+            <view class='item-imgbox'>
+              <image src='{{item.img}}' mode="widthFix"></image>
+            </view>
+            <view class='item-des' style="{{items.length==2&&index==0&&'padding-top:80rpx'}}">
+              <view class='des-content'>{{item.des}}</view>
+              <view class='xieyi' wx:if="{{items.length==2&&index==1||items.length==1&&index==0}}">
+                <view class='icon-box'>
+                  <view class='duigou' bindtap="checkboxChange">
+                   <image  wx:if="{{checkedValue}}"  src='../../image/notEmpty.png'></image>
+                    <image wx:else src='../../image/empty.png'></image>
+                   
+                    <!-- <text wx:if="{{checkedValue}}">✔</text> -->
+                  </view>
+                </view>
+                <view class='text' bindtap="toAgreement">同意会员协议</view>
+              </view>
+            </view>
+
+            <view class='item-btnbox'>
+              <view class='item-btn' wx:if="{{item.buttonTitle!=''}}" bindtap="memberOrDeposi" data-type='{{item.type}}'>{{item.buttonTitle}}</view>
+            </view>
+
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+
+
+    <!--=============================================  -->
+    <image src="../../image/my.png" class='my_image'></image>
+    <button open-type="getUserInfo" class="auth-btn" bindtap='myClick'></button>
+    <image src="../../image/orderList.png" class='orderList_image'></image>
+    <button open-type="getUserInfo" class="auth-btn1" bindtap='orderListClick'></button>
+    <label class='my_label'>我</label>
+    <label class='orderList_label'>订单</label>
+    <!-- <button bindtap='jump'>跳转</button>    -->
+  </view>
+  <view class='limit' wx:if="{{showLimit}}">
+    <view class='limit-container'>
+      <view class='top'>
+        <image class='limit-icon' src='../../image/warning.png'></image> 
+        <view class='text'>抱歉，系统检测到您被设置为“限制用户”</view>
+        <view class='text'>无法购物，如有异议请联系客服</view>
+      </view>
+    </view>
+    <view class='custom-service' bindtap="callPhone">
+      <image src='../../image/phone.png'></image>
+      <text>{{customerServicePhone}}</text>
+    </view>
+  </view>
+</view>
+
+
+<web-view src="https://test-gds.27aichi.com/dinner/product-list-index.html"></web-view>

@@ -1,0 +1,39 @@
+<!-- <view class="container">
+  <view class="user-info">
+    <image src='../../image/app_icon.png'></image>
+    <text style='padding-top:8px;color:#009e96'>路 上 会 员 柜</text>
+  </view>
+  <view class="inputView">
+    <view style='display:flex;flex-direction:row;width:100%'>
+      <input class="input" style='width:70%;' type="number" placeholder="请输入手机号码" value="{{phoneNum}}" placeholder-style="color:#ccc" bindinput="input_phoneNum" />
+      <view class="check-button" style='color:#aaa;border-color:#e1e1e1;' bindtap="get_vertify_code">{{message}}</view>
+    </view>
+
+
+    <view class="line"></view>
+  </view>
+  <view class="inputView">
+    <input class="input" type="number" placeholder="请输入验证码" placeholder-style="color:#ccc" bindinput="input_code" />
+    <view class="line"></view>
+     <view style='margin-top:10px;margin-left:0%;width:100%;text-align:right;color:#009e96' bindtap="gotoPasswordLogin">密码登录</view> 
+
+  </view>
+  <button style="margin-left: 10%; margin-right: 10%; margin-top: 50rpx;background-color:#009e96;border-radius:5px;border-width:0px;color:white" bindtap="listenerLogin">登录</button>
+    <view style='margin-top:10px;margin-left:10%;width:80%;text-align:center;color:#009e96' bindtap="gotoRegister">新用户注册</view>  
+</view> -->
+
+<view class="new-auth">
+  <image class="logo" src='../../image/app_icon.png'></image>
+  <text class="name">小巴扎悦盒</text>
+  <view class="msg">
+    <text class="icon"></text>
+    <text class="txt">我们需要获取您的小巴扎悦盒授权</text>
+  </view>
+  
+  <button wx:if="{{canClick}}" class="btn-auth" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+    授权登录
+  </button>
+  <button wx:else class="btn-auth">
+    授权登录
+  </button>
+</view>
